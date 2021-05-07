@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <p>You are logged in as <%= current_user.name %></p>  
+<% end %>
+
+
+<h1>Welcome to Coollege!</h1>
+
+
+<% if user_signed_in? %>
+  <%= link_to "Logout", destroy_user_session_path(@current_user), method: :delete %>
+<% else %>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
+
