@@ -1,9 +1,15 @@
 # README
 
-To get this application running you'll need:
+To get this application running you'll need install:
 
-* Ruby 2.7.2
+* Install Ruby 2.7.2 (recomended using of [Rbenv](https://github.com/rbenv/rbenv#installation))
 
-* Rails 6.1.3
+* psql ([PostgreSQL](https://www.postgresql.org/)) 10.16 
 
-* psql (PostgreSQL) 10.16 
+After installing Ruby and PostgreSQL, clone this repository to your machine, open the project dir in the terminal and run `bundle install`.
+
+Be sure this step go well. Next, run in terminal `rake db:create` and `rake db:setup`.
+
+If everything goes well you're ready to go!
+
+Just run `rails server` to start the server and then access `http://localhost:3000/`. 
