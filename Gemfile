@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'bootstrap', '~> 5.0.0'
 gem 'jquery-rails'
+gem 'show_for'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
