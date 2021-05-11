@@ -1,5 +1,19 @@
-<div class="row text-center">
+<div class='row text-center'>
   <h1>Welcome to Coollege!</h1>
 </div>
 
+
+<% if user_signed_in? %>
+  <div class='row'>
+    <h1 class='col-10'>Schools</h1>
+    <%= link_to 'New School', new_school_path, class: 'col-2 text-center' %>
+  </div>
+  <hr>
+
+  <div class='row'>
+    <%= render current_user.schools %>
+  </div>
+<% else %>
+  <h2>Please, login to start using de application!</h2>
+<% end %>
 

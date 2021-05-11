@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_230937) do
 
   create_table "schools", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
