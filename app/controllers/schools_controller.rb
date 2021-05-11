@@ -14,8 +14,8 @@ class SchoolsController < ApplicationController
       if @school.save
         format.html { redirect_to root_path }
       else
-        flash.errors(@school.errors)
-        format.html { new_school_path }
+        flash[:error] = @school.errors.full_messages
+        format.html { redirect_to new_school_path }
       end
     end
   end
@@ -25,8 +25,8 @@ class SchoolsController < ApplicationController
       if @school.update(school_params)
         format.html { redirect_to @school }
       else
-        flash.errors(@school.errors)
-        format.html { new_school_path }
+        flash[:error] = @school.errors.full_messages
+        format.html { render edit }
       end
     end
   end

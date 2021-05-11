@@ -25,7 +25,12 @@
       </div>
     </nav>
 
+
     <div class="container">
+      <% flash[:error]&.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
