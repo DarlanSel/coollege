@@ -1,4 +1,6 @@
 class SchoolsController < ApplicationController
+  before_action :set_school, except: %w[create]
+
   def new
   end
 
@@ -6,14 +8,51 @@ class SchoolsController < ApplicationController
   end
 
   def create
+    @school = current_user.schools.build(school_params)
+
+    respond_to do |format|
+      if @school.save
+        format.html { redirect_to root_path }
+      else
+        flash.errors(@school.errors)
+        format.html { new_school_path }
+      end
+    end
   end
 
   def update
+    respond_to do |format|
+      if @school.update(school_params)
+        format.html { redirect_to @school }
+      else
+        flash.errors(@school.errors)
+        format.html { new_school_path }
+      end
+    end
   end
 
   def show
   end
 
   def destroy
+    @school.destroy
+
+    redirect_to root_path
   end
+
+  private
+
+  def set_school
+    if params[:id].present?
+      @school = School.find(params[:id])
+    else
+      @school = School.new
+    end
+  end
+
+
+  def school_params
+    params.require(:school).permit(:name, :slug)
+  end
+
 end

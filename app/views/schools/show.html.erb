@@ -1,2 +1,11 @@
-<h1>Schools#show</h1>
-<p>Find me in app/views/schools/show.html.erb</p>
+<h1><%= @school.name %></h1>
+
+<%= show_for @school do |s| %>
+  <%= s.attribute :slug %>
+  <%= s.association :user %>
+<% end %>
+
+<div class='row'>
+  <%= link_to 'Edit', edit_school_path(@school), class: 'btn btn-warning col-1' %>
+  <%= link_to 'Delete', @school, method: :delete, class: 'btn btn-danger col-1' %>
+</div>
