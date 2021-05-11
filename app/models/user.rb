@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, :birthday, presence: true
+
+  has_many :schools
+
 end
