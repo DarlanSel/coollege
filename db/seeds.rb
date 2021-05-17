@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all
+School.destroy_all
+
+User.create!([
+  {
+    name: 'Exemplo de Pessoa',
+    email: 'exemplo@mail.com',
+    password: '123456789',
+    birthday: Date.new(2000, 5, 30)
+  },
+  {
+    name: 'Darlan Alaor Selzlein',
+    email: 'sdarlanset@gmail.com',
+    password: '123456789',
+    birthday: Date.new(2000, 5, 30)
+  }
+])
+
+School.create!([
+  {
+    name: 'Colégio Martin Luther',
+    slug: 'cml',
+    user: User.first
+  }
+])

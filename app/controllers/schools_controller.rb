@@ -7,6 +7,9 @@ class SchoolsController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def create
     @school = current_user.schools.build(school_params)
 
@@ -29,9 +32,6 @@ class SchoolsController < ApplicationController
         format.html { render edit }
       end
     end
-  end
-
-  def show
   end
 
   def destroy
