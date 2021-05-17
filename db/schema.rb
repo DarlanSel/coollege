@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_230937) do
+ActiveRecord::Schema.define(version: 2021_05_17_222624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "grades", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "school_id", null: false
+    t.string "personable_type", null: false
+    t.integer "personable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_id"], name: "index_people_on_school_id"
+    t.index ["user_id"], name: "index_people_on_user_id"
+  end
 
   create_table "schools", force: :cascade do |t|
     t.string "name"
@@ -22,6 +39,18 @@ ActiveRecord::Schema.define(version: 2021_04_20_230937) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_schools_on_user_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.bigint "grade_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grade_id"], name: "index_students_on_grade_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,5 +67,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_230937) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "people", "schools"
+  add_foreign_key "people", "users"
   add_foreign_key "schools", "users"
+  add_foreign_key "students", "grades"
 end
