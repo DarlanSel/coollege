@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :schools
 
+  get ':slug', to: 'schools#homepage', as: :homepage_school
 end
