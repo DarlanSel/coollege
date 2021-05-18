@@ -1,0 +1,22 @@
+<h1>Schools</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <th><%= School.human_attribute_name('name') %></th>
+    <th><%= School.human_attribute_name('slug') %></th>
+    <th></th>
+  </thead>
+  <tbody>
+
+    <% @schools.each do |school| %>
+      <tr>
+        <th><%= school.name %></th>
+        <th><%= school.slug %></th>
+        <th class='text-end'>
+          <%= link_to 'Show', school, class: "btn btn-primary" %>
+        </th>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

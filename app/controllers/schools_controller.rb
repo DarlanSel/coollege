@@ -1,5 +1,10 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, except: %w[create]
+  before_action :set_school, except: %w[create index]
+
+  def index
+    @schools = current_user.schools
+  end
+
 
   def new
   end
