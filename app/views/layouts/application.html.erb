@@ -16,6 +16,7 @@
         <%= link_to "Coollege", root_path, class: "navbar-brand" %>
         <% if current_school %>
           <%= link_to 'Teachers', school_teachers_path(current_school) %>
+          <%= link_to 'Grades', school_grades_path(current_school) %>
         <% end %>
         <div class="d-flex">
           <% if user_signed_in? %>
