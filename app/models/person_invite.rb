@@ -1,4 +1,5 @@
 class PersonInvite < ApplicationRecord
-  validates :email, presence: true
   belongs_to :person
+
+  enum :status, %w[active accepted denied]
 end

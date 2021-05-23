@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_121222) do
   end
 
   create_table "people", force: :cascade do |t|
+    t.string "name", null: false
     t.bigint "user_id"
     t.bigint "school_id", null: false
     t.string "personable_type", null: false
@@ -33,8 +34,9 @@ ActiveRecord::Schema.define(version: 2021_05_18_121222) do
   end
 
   create_table "person_invites", force: :cascade do |t|
-    t.bigint "person_id", null: false
+    t.integer "status", default: 0, null: false
     t.string "email", null: false
+    t.bigint "person_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["person_id"], name: "index_person_invites_on_person_id"

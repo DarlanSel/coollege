@@ -1,6 +1,4 @@
 class SchoolsController < ApplicationController
-  include ApplicationHelper
-
   before_action :set_school, except: %w[create index]
 
   load_and_authorize_resource

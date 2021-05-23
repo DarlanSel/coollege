@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def current_school
-    @current_school ||= School.find_by(slug: params[:slug])
+    @current_school ||= School.find(params[:school_id])
   end
 
 end

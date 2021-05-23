@@ -1,5 +1,5 @@
 class Person < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :school
   delegated_type :personable, types: %w[ Teacher Student ]
 end

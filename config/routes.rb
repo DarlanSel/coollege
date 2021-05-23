@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :schools
-
-  get ':slug', to: 'schools#homepage', as: :homepage_school
+  resources :schools do
+    get 'homepage', to: 'schools#homepage', as: :homepage
+    resources :teachers
+  end
 end
