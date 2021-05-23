@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
 
   def index
-    @teachers = Teacher.all
+    @teachers = Person.from_school(current_school).teachers
   end
 
   def show
@@ -17,15 +17,15 @@ class TeachersController < ApplicationController
 
   def create
     @teacher = Person.new(person_params)
-    @teacher.user = current_user
     @teacher.school = current_school
     @teacher.personable = Teacher.new
 
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to school_teacher_path(current_school.id, @teacher.personable.id), notice: "Teacher was successfully created." }
+        format.html { redirect_to school_teacher_path(current_school.id, @teacher.personable.id) }
         format.json { render :show, status: :created, location: @teacher }
       else
+        flash[:error] = @teacher.errors.full_messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
@@ -34,10 +34,11 @@ class TeachersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: "Teacher was successfully updated." }
+      if @teacher.update(person_params)
+        format.html { redirect_to school_teacher_path(current_school, @teacher.teacher) }
         format.json { render :show, status: :ok, location: @teacher }
       else
+        flash[:error] = @teacher.errors.full_messages
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
@@ -47,7 +48,7 @@ class TeachersController < ApplicationController
   def destroy
     @teacher.destroy
     respond_to do |format|
-      format.html { redirect_to teachers_url, notice: "Teacher was successfully destroyed." }
+      format.html { redirect_to school_teachers_url(current_school) }
       format.json { head :no_content }
     end
   end
@@ -61,9 +62,4 @@ class TeachersController < ApplicationController
     def person_params
       params.require(:person).permit(:name)
     end
-
-    def invite_params
-      params.require(:invite).permit(:email)
-    end
-
 end

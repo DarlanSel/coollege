@@ -14,6 +14,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <%= link_to "Coollege", root_path, class: "navbar-brand" %>
+        <% if current_school %>
+          <%= link_to 'Teachers', school_teachers_path(current_school) %>
+        <% end %>
         <div class="d-flex">
           <% if user_signed_in? %>
             <%= link_to 'Schools', schools_path, class: "navbar-brand" %>

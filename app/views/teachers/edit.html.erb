@@ -1,6 +1,12 @@
 <h1>Editing Teacher</h1>
 
-<%= render 'form', teacher: @teacher %>
+<%= form_for @teacher, url: school_teacher_path(current_school, @teacher) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-<%= link_to 'Show', @teacher %> |
-<%= link_to 'Back', teachers_path %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
