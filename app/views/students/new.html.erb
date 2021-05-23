@@ -1,0 +1,25 @@
+<h1>New Student</h1>
+
+<%= form_for @student, url: school_students_path(current_school) do |f| %>
+  <div class row>
+    <div class='col-3'>
+      <div class='mb-3'>
+        <%= f.label :name, class: 'form-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="student_grade">Grade</label>
+        <select name="student[grade_id]" id="student_grade_id">
+          <% @grades.each do |grade| %>
+            <option value='<%= grade.id %>'><%= grade.name %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class='text-end'>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
