@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :students, except: %i[ show ]
 
     resources :grades, except: %i[ show ]
+    resources :subjects, except: %i[ show ]
   end
 end

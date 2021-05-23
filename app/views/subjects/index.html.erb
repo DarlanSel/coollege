@@ -1,0 +1,25 @@
+<div class='row'>
+  <h1 class='col-11'>Subjects</h1>
+  <%= link_to 'New Grade', new_school_subject_path(current_school), class: 'btn btn-primary col-1' %>
+</div>
+
+<table class='table table-stripped table-hover'>
+  <thead>
+    <tr>
+      <th class='col-11'><%= Subject.human_attribute_name('Name') %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.name %></td>
+        <td><%= link_to 'Edit', edit_school_subject_path(current_school, subject) %></td>
+        <td><%= link_to 'Delete', school_subject_path(current_school, subject), method: :delete %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
