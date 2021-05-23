@@ -1,0 +1,10 @@
+<h1><%= @subj_class.subject.name %> Class</h1>
+
+<%= show_for @subj_class do |s| %>
+  <%= s.attribute :start_date %>
+  <%= s.attribute :end_date %>
+  <%= s.association :teacher do %>
+    <%= @subj_class.teacher.person.name %>
+  <% end %>
+  <%= s.association :grade %>
+<% end %>
