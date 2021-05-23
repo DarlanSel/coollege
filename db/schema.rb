@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2021_05_18_121222) do
 
   create_table "grades", force: :cascade do |t|
     t.string "name"
+    t.bigint "school_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_id"], name: "index_grades_on_school_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_121222) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "grades", "schools"
   add_foreign_key "people", "schools"
   add_foreign_key "people", "users"
   add_foreign_key "person_invites", "people"

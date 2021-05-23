@@ -1,2 +1,16 @@
-<h1>Grades#new</h1>
-<p>Find me in app/views/grades/new.html.erb</p>
+<h1>New Grade</h1>
+
+<%= form_for @grade, url: school_grades_path(current_school) do |f| %>
+  <div class row>
+    <div class='col-3'>
+      <div class='mb-3'>
+        <%= f.label :name, class: 'form-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class='text-end'>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
