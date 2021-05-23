@@ -1,10 +1,9 @@
 <div class='col-4'>
-  <div class="card">
-    <h5 class="card-header"><%= school.name %></h5>
-    <div class="card-body">
-      <div class='text-end'>
-        <%= link_to 'Show', school, class: "btn btn-primary" %>
+  <%= link_to school_homepage_path(school) do %>
+    <div class="card">
+      <h5 class="card-header"><%= school.name %></h5>
+      <div class="card-body">
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

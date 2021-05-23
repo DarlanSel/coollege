@@ -1,0 +1,27 @@
+<div class='row'>
+  <h1 class='col-11'>Students</h1>
+  <%= link_to 'New Student', new_school_student_path(current_school), class: 'btn btn-primary col-1' %>
+</div>
+
+<table class='table table-stripped table-hover'>
+  <thead>
+    <tr>
+      <th class='col-3'><%= Person.human_attribute_name('Name') %></th>
+      <th class='col-4'><%= Person.human_attribute_name('User') %></th>
+      <th class='col-4'><%= Student.human_attribute_name('Grade') %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.user&.name %></td>
+        <td><%= student.personable.grade.name %></td>
+        <td><%= link_to 'Edit', edit_school_student_path(current_school, student) %></td>
+        <td><%= link_to 'Delete', school_student_path(current_school, student), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

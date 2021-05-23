@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_222624) do
+ActiveRecord::Schema.define(version: 2021_05_18_121222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "grades", force: :cascade do |t|
     t.string "name"
+    t.bigint "school_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_id"], name: "index_grades_on_school_id"
   end
 
   create_table "people", force: :cascade do |t|
+    t.string "name", null: false
     t.bigint "user_id"
     t.bigint "school_id", null: false
     t.string "personable_type", null: false
@@ -32,12 +35,22 @@ ActiveRecord::Schema.define(version: 2021_05_17_222624) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
+  create_table "person_invites", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.string "email", null: false
+    t.bigint "person_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_person_invites_on_person_id"
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_schools_on_slug", unique: true
     t.index ["user_id"], name: "index_schools_on_user_id"
   end
 
@@ -67,8 +80,10 @@ ActiveRecord::Schema.define(version: 2021_05_17_222624) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "grades", "schools"
   add_foreign_key "people", "schools"
   add_foreign_key "people", "users"
+  add_foreign_key "person_invites", "people"
   add_foreign_key "schools", "users"
   add_foreign_key "students", "grades"
 end

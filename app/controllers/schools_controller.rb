@@ -1,5 +1,15 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, except: %w[create]
+  before_action :set_school, except: %w[create index]
+
+  load_and_authorize_resource
+
+  def homepage
+  end
+
+  def index
+    @schools = current_user.schools
+  end
+
 
   def new
   end

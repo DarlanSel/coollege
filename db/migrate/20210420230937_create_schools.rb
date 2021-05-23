@@ -4,6 +4,7 @@ class CreateSchools < ActiveRecord::Migration[6.1]
       t.string :name, presence: true
       t.string :slug, presence: true
       t.references :user, null: false, foreign_key: true
+      t.index :slug, unique: true
 
       t.timestamps
     end

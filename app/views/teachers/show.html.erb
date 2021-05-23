@@ -1,0 +1,8 @@
+<%= show_for @teacher do |s| %>
+  <%= s.attribute :name %>
+  <%= s.association :user %>
+  <%= s.association :school %>
+<% end %>
+
+<%#= link_to 'Edit', edit_teacher_path(@teacher) %>
+<%#= link_to 'Back', teachers_path %>
