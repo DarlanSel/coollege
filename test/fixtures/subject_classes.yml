@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2021-05-23
+  end_date: 2021-05-23
+  subject: one
+  grade: one
+  teacher: one
+
+two:
+  start_date: 2021-05-23
+  end_date: 2021-05-23
+  subject: two
+  grade: two
+  teacher: two
