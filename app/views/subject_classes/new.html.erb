@@ -1,0 +1,39 @@
+<h1>New Class</h1>
+
+<%= form_for @subj_class, url: school_subject_classes_path(current_school) do |f| %>
+  <div class row>
+    <div class='col-3'>
+      <div class='mb-3'>
+        <%= f.label :start_date, class: 'form-label' %>
+        <%= f.date_field :start_date, class: 'form-control' %>
+      </div>
+
+      <div class='mb-3'>
+        <%= f.label :end_date, class: 'form-label' %>
+        <%= f.date_field :end_date, class: 'form-control' %>
+      </div>
+
+      <div class='mb-3'>
+        <%= f.label :subject_id, class: 'form-label' %>
+        <%= f.select :subject_id, options_for_select(@subjects.map { |s| [s.name, s.id] }),
+                      class: 'form-control' %>
+      </div>
+
+      <div class='mb-3'>
+        <%= f.label :teacher_id, class: 'form-label' %>
+        <%= f.select :teacher_id, options_for_select(@teachers.map { |s| [s.name, s.teacher&.id] }),
+                      class: 'form-control' %>
+      </div>
+
+      <div class='mb-3'>
+        <%= f.label :grade_id, class: 'form-label' %>
+        <%= f.select :grade_id, options_for_select(@grades.map { |s| [s.name, s.id] }),
+                      class: 'form-control' %>
+      </div>
+
+      <div class='text-end'>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
