@@ -16,13 +16,15 @@
         <%= link_to "Coollege", root_path, class: "navbar-brand" %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <% if current_school %>
-              <%= render 'layouts/school_nav_options' %>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Schools', schools_path,
-                    class: "nav-link #{ 'active' if controller_name == 'schools' }" %>
-              </li>
+            <% if user_signed_in? %>
+              <% if current_school %>
+                <%= render 'layouts/school_nav_options' %>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Schools', schools_path,
+                      class: "nav-link #{ 'active' if controller_name == 'schools' }" %>
+                </li>
+              <% end %>
             <% end %>
           </ul>
         </div>
