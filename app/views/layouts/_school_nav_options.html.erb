@@ -1,0 +1,29 @@
+<li class="nav-item">
+  <%= link_to current_school.name, school_homepage_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'schools' }" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Teachers', school_teachers_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'teachers' }" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Students', school_students_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'students' }" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Grades', school_grades_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'grades' }" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Subjects', school_subjects_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'subjects' }" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Subject Classes', school_subject_classes_path(current_school),
+      class: "nav-link #{ 'active' if controller_name == 'subject_classes' }" %>
+</li>
