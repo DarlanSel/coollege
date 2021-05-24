@@ -22,7 +22,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to school_teacher_path(current_school.id, @teacher.personable.id) }
+        format.html { redirect_to school_teacher_path(current_school, @teacher) }
         format.json { render :show, status: :created, location: @teacher }
       else
         flash[:error] = @teacher.errors.full_messages
@@ -35,7 +35,7 @@ class TeachersController < ApplicationController
   def update
     respond_to do |format|
       if @teacher.update(person_params)
-        format.html { redirect_to school_teacher_path(current_school, @teacher.teacher) }
+        format.html { redirect_to school_teacher_path(current_school, @teacher) }
         format.json { render :show, status: :ok, location: @teacher }
       else
         flash[:error] = @teacher.errors.full_messages
@@ -56,7 +56,7 @@ class TeachersController < ApplicationController
   private
 
     def set_teacher
-      @teacher = Teacher.find(params[:id]).person
+      @teacher = Person.find(params[:id])
     end
 
     def person_params

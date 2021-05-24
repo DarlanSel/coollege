@@ -14,9 +14,9 @@
       <tr>
         <td><%= person.name %></td>
         <td><%= person.user&.name || 'No user' %></td>
-        <td><%= link_to 'Show', school_teacher_path(current_school, person.teacher) %></td>
-        <td><%= link_to 'Edit', edit_school_teacher_path(current_school, person.teacher) %></td>
-        <td><%= link_to 'Destroy', school_teacher_path(current_school, person.teacher), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', school_teacher_path(current_school, person) %></td>
+        <td><%= link_to 'Edit', edit_school_teacher_path(current_school, person) %></td>
+        <td><%= link_to 'Destroy', school_teacher_path(current_school, person), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

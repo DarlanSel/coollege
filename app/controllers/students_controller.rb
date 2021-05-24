@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
 
   private
     def set_student
-      @student = Student.find(params[:id]).person
+      @student = Person.find(params[:id])
     end
 
     def person_params
